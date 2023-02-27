@@ -11,20 +11,32 @@ function handleClick(event) {
 
     let position = square.id;
 
-    handleMove(position);
-
-    uptadeSquares();
+    if (handleMove(position)) {
+        setTimeout(() => {
+            alert("O jogo Acabou!");
+        }, 50);
+    }
+    updateSquare(position);
 }
 
-function uptadeSquares() {
-    let squares = document.querySelectorAll(".square");
+function updateSquare(position) {
+    let square = document.getElementById(position.toString());
 
-    squares.forEach((square) => {
-        let position = square.id;
-        let symbol = board[position];
+    let symbol = board[position];
 
-        if (symbol != "") {
-            square.innerHTML = `<div class="${symbol}"></div>`;
-        }
-    });
+    square.innerHTML = `<div class="${symbol}"></div>`;
 }
+
+// //utilizar essa função pra resetar o game
+// function uptadeSquares() {
+//     let squares = document.querySelectorAll(".square");
+
+//     squares.forEach((square) => {
+//         let position = square.id;
+//         let symbol = board[position];
+
+//         if (symbol != "") {
+//             square.innerHTML = `<div class="${symbol}"></div>`;
+//         }
+//     });
+// }
